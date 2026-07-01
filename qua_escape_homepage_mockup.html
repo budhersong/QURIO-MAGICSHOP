@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+:root {
+  --color-brand-primary: #232425;
+  --color-brand-secondary: #0F7FFF;
+  --color-bg-page: #FFFFFF;
+  --color-bg-surface: #FAFAFA;
+  --color-bg-subtle: #F5F5F5;
+  --color-text-primary: #232425;
+  --color-text-secondary: #606366;
+  --color-text-tertiary: #909499;
+  --color-text-disabled: #C4C7CC;
+  --color-text-link: #0F7FFF;
+  --color-text-on-brand: #FFFFFF;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+  --color-border-default: #EAEAEA;
+  --color-border-strong: #D0D3D8;
+  --color-border-subtle: #F2F2F2;
+  --color-border-brand: #0F7FFF;
+  --color-border-error: #EF4444;
+  --color-border-success: #10B981;
+  --space-4: 4px; --space-8: 8px; --space-12: 12px; --space-16: 16px;
+  --space-20: 20px; --space-24: 24px; --space-32: 32px; --space-48: 48px;
+  --text-h1: 36px; --text-h2: 28px; --text-h3: 22px; --text-h4: 18px;
+  --text-body: 16px; --text-small: 14px; --text-caption: 12px;
+  --radius-4: 4px; --radius-8: 8px; --radius-12: 12px;
+  --border-width-1: 1px; --border-width-2: 2px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+
+  /* Categorical color ramps (mirror of design-tokens.css) */
+  --color-cat-blue-50:#EBF3FE;--color-cat-blue-100:#C5DDFC;--color-cat-blue-200:#92BEF8;--color-cat-blue-400:#0F7FFF;--color-cat-blue-600:#0561C5;--color-cat-blue-800:#053F7C;--color-cat-blue-900:#06294F;
+  --color-cat-green-50:#E5F8F1;--color-cat-green-100:#B7EFD8;--color-cat-green-200:#7DE0BA;--color-cat-green-400:#10B981;--color-cat-green-600:#088762;--color-cat-green-800:#045A41;--color-cat-green-900:#023A29;
+  --color-cat-amber-50:#FEF3D9;--color-cat-amber-100:#FCE0A0;--color-cat-amber-200:#FAC865;--color-cat-amber-400:#F59E0B;--color-cat-amber-600:#B16E03;--color-cat-amber-800:#6E4500;--color-cat-amber-900:#422900;
+  --color-cat-red-50:#FDE9E9;--color-cat-red-100:#F9C2C2;--color-cat-red-200:#F49595;--color-cat-red-400:#EF4444;--color-cat-red-600:#C41B1B;--color-cat-red-800:#821212;--color-cat-red-900:#520B0B;
+  --color-cat-purple-50:#F0EAFE;--color-cat-purple-100:#D5C2FB;--color-cat-purple-200:#B59AF8;--color-cat-purple-400:#8B5CF6;--color-cat-purple-600:#6431D2;--color-cat-purple-800:#441E8E;--color-cat-purple-900:#2A1259;
+  --color-cat-teal-50:#DEF7F4;--color-cat-teal-100:#A6EBE2;--color-cat-teal-200:#6BDCCD;--color-cat-teal-400:#14B8A6;--color-cat-teal-600:#0D8779;--color-cat-teal-800:#075A50;--color-cat-teal-900:#043934;
+  --color-cat-coral-50:#FEE7EB;--color-cat-coral-100:#FCC0CA;--color-cat-coral-200:#FA98A8;--color-cat-coral-400:#FB7185;--color-cat-coral-600:#D14258;--color-cat-coral-800:#8C2336;--color-cat-coral-900:#5A111F;
+  --color-cat-pink-50:#FCE4F1;--color-cat-pink-100:#F7BAD9;--color-cat-pink-200:#F18BBE;--color-cat-pink-400:#EC4899;--color-cat-pink-600:#B81F75;--color-cat-pink-800:#7B0F4D;--color-cat-pink-900:#4D0530;
+  --color-cat-gray-50:#F3F4F6;--color-cat-gray-100:#E5E7EB;--color-cat-gray-200:#CBD0D7;--color-cat-gray-400:#6B7280;--color-cat-gray-600:#4A4F58;--color-cat-gray-800:#2A2D33;--color-cat-gray-900:#16181B;
+}
+.c-blue   { fill: var(--color-cat-blue-50);   stroke: var(--color-cat-blue-600);   color: var(--color-cat-blue-800);   background-color: var(--color-cat-blue-50);   border-color: var(--color-cat-blue-600); }
+.c-green  { fill: var(--color-cat-green-50);  stroke: var(--color-cat-green-600);  color: var(--color-cat-green-800);  background-color: var(--color-cat-green-50);  border-color: var(--color-cat-green-600); }
+.c-amber  { fill: var(--color-cat-amber-50);  stroke: var(--color-cat-amber-600);  color: var(--color-cat-amber-800);  background-color: var(--color-cat-amber-50);  border-color: var(--color-cat-amber-600); }
+.c-red    { fill: var(--color-cat-red-50);    stroke: var(--color-cat-red-600);    color: var(--color-cat-red-800);    background-color: var(--color-cat-red-50);    border-color: var(--color-cat-red-600); }
+.c-purple { fill: var(--color-cat-purple-50); stroke: var(--color-cat-purple-600); color: var(--color-cat-purple-800); background-color: var(--color-cat-purple-50); border-color: var(--color-cat-purple-600); }
+.c-teal   { fill: var(--color-cat-teal-50);   stroke: var(--color-cat-teal-600);   color: var(--color-cat-teal-800);   background-color: var(--color-cat-teal-50);   border-color: var(--color-cat-teal-600); }
+.c-coral  { fill: var(--color-cat-coral-50);  stroke: var(--color-cat-coral-600);  color: var(--color-cat-coral-800);  background-color: var(--color-cat-coral-50);  border-color: var(--color-cat-coral-600); }
+.c-pink   { fill: var(--color-cat-pink-50);   stroke: var(--color-cat-pink-600);   color: var(--color-cat-pink-800);   background-color: var(--color-cat-pink-50);   border-color: var(--color-cat-pink-600); }
+.c-gray   { fill: var(--color-cat-gray-50);   stroke: var(--color-cat-gray-600);   color: var(--color-cat-gray-800);   background-color: var(--color-cat-gray-50);   border-color: var(--color-cat-gray-600); }
+.c-blue text, .c-green text, .c-amber text, .c-red text,
+.c-purple text, .c-teal text, .c-coral text, .c-pink text, .c-gray text { fill: currentColor; stroke: none; }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-brand-primary: #E8E9EA;
+    --color-brand-secondary: #4a9eff;
+    --color-bg-page: #1A1B1C;
+    --color-bg-surface: #232425;
+    --color-bg-subtle: #2A2B2C;
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #B8BBBF;
+    --color-text-tertiary: #868B92;
+    --color-text-disabled: #4A4C4F;
+    --color-text-link: #8bb8ff;
+    --color-text-on-brand: #1A1B1C;
+    --color-border-default: #3A3B3C;
+    --color-border-strong: #4A4C4F;
+    --color-border-subtle: #2E2F30;
+    --color-border-brand: #4a9eff;
+    --color-border-error: #f87171;
+    --color-border-success: #34d399;
+  }
+  .c-blue   { fill: var(--color-cat-blue-800);   stroke: var(--color-cat-blue-200);   color: var(--color-cat-blue-100);   background-color: var(--color-cat-blue-800);   border-color: var(--color-cat-blue-200); }
+  .c-green  { fill: var(--color-cat-green-800);  stroke: var(--color-cat-green-200);  color: var(--color-cat-green-100);  background-color: var(--color-cat-green-800);  border-color: var(--color-cat-green-200); }
+  .c-amber  { fill: var(--color-cat-amber-800);  stroke: var(--color-cat-amber-200);  color: var(--color-cat-amber-100);  background-color: var(--color-cat-amber-800);  border-color: var(--color-cat-amber-200); }
+  .c-red    { fill: var(--color-cat-red-800);    stroke: var(--color-cat-red-200);    color: var(--color-cat-red-100);    background-color: var(--color-cat-red-800);    border-color: var(--color-cat-red-200); }
+  .c-purple { fill: var(--color-cat-purple-800); stroke: var(--color-cat-purple-200); color: var(--color-cat-purple-100); background-color: var(--color-cat-purple-800); border-color: var(--color-cat-purple-200); }
+  .c-teal   { fill: var(--color-cat-teal-800);   stroke: var(--color-cat-teal-200);   color: var(--color-cat-teal-100);   background-color: var(--color-cat-teal-800);   border-color: var(--color-cat-teal-200); }
+  .c-coral  { fill: var(--color-cat-coral-800);  stroke: var(--color-cat-coral-200);  color: var(--color-cat-coral-100);  background-color: var(--color-cat-coral-800);  border-color: var(--color-cat-coral-200); }
+  .c-pink   { fill: var(--color-cat-pink-800);   stroke: var(--color-cat-pink-200);   color: var(--color-cat-pink-100);   background-color: var(--color-cat-pink-800);   border-color: var(--color-cat-pink-200); }
+  .c-gray   { fill: var(--color-cat-gray-800);   stroke: var(--color-cat-gray-200);   color: var(--color-cat-gray-100);   background-color: var(--color-cat-gray-800);   border-color: var(--color-cat-gray-200); }
+}
+html, body { margin: 0; padding: 0; background: transparent !important; box-sizing: border-box;
+             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; }
+*, *::before, *::after { box-sizing: inherit; }
+svg, svg text, svg tspan { font-family: inherit; }
+</style>
+<script>
+function sendPrompt(text) {
+  window.parent.postMessage(
+    { type: 'genspark_visualize_send_prompt', text: String(text) }, '*'
+  );
+}
+function _reportHeight() {
+  var h = Math.max(
+    document.body ? document.body.scrollHeight : 0,
+    document.documentElement ? document.documentElement.scrollHeight : 0,
+    100
+  );
+  window.parent.postMessage({ type: 'genspark_visualize_height', height: h }, '*');
+}
+window.addEventListener('load', function() {
+  _reportHeight();
+  if (window.ResizeObserver) {
+    new ResizeObserver(_reportHeight).observe(document.body);
+  }
+});
+window.addEventListener('resize', _reportHeight);
+
+// ── PNG export (rasterize the rendered widget inside the iframe) ─────────────
+// Runs here because sandbox="allow-scripts" (no allow-same-origin) makes the
+// iframe DOM unreachable from the parent. Clone <body>, swap each <canvas>
+// (Chart.js) for a snapshot <img>, inline the document styles with dark-scheme
+// rules stripped for a deterministic light export, wrap in <svg><foreignObject>,
+// and rasterize via a data: URL (a Blob URL would taint the canvas in Chromium).
+function _gsExportFont() { return "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'"; }
+function _gsCollectStyles() {
+  var out = '';
+  var s = document.querySelectorAll('style');
+  for (var i = 0; i < s.length; i++) { out += (s[i].textContent || '') + '\n'; }
+  return out;
+}
+function _gsStripDarkMedia(css) {
+  var marker = '@media (prefers-color-scheme: dark)';
+  var idx = css.indexOf(marker);
+  while (idx !== -1) {
+    var brace = css.indexOf('{', idx);
+    if (brace === -1) { css = css.slice(0, idx); break; }
+    var depth = 1, j = brace + 1;
+    while (j < css.length && depth > 0) {
+      var ch = css.charAt(j);
+      if (ch === '{') depth++; else if (ch === '}') depth--;
+      j++;
+    }
+    css = css.slice(0, idx) + css.slice(j);
+    idx = css.indexOf(marker);
+  }
+  return css;
+}
+function _gsCleanup(node) {
+  var scripts = node.querySelectorAll('script');
+  for (var i = 0; i < scripts.length; i++) {
+    if (scripts[i].parentNode) scripts[i].parentNode.removeChild(scripts[i]);
+  }
+  var nameRe = /^[A-Za-z_:][A-Za-z0-9_:.-]*$/;
+  var els = node.querySelectorAll('*');
+  for (var k = 0; k < els.length; k++) {
+    var attrs = els[k].attributes;
+    for (var a = attrs.length - 1; a >= 0; a--) {
+      if (!nameRe.test(attrs[a].name)) els[k].removeAttribute(attrs[a].name);
+    }
+  }
+}
+function _gsSubstituteCanvases(live, clone) {
+  var lc = live.querySelectorAll('canvas');
+  var cc = clone.querySelectorAll('canvas');
+  for (var i = 0; i < lc.length && i < cc.length; i++) {
+    var data = lc[i].toDataURL('image/png');
+    var img = document.createElement('img');
+    img.setAttribute('src', data);
+    img.setAttribute('style', (cc[i].getAttribute('style') || '') +
+      ';width:' + lc[i].offsetWidth + 'px;height:' + lc[i].offsetHeight + 'px');
+    if (cc[i].parentNode) cc[i].parentNode.replaceChild(img, cc[i]);
+  }
+}
+function _gsPostPng(id, dataUrl, error) {
+  window.parent.postMessage(
+    { type: 'genspark_visualize_png', id: id, dataUrl: dataUrl || null, error: error || null },
+    '*'
+  );
+}
+function _gsRasterize(id, scale) {
+  try {
+    scale = scale || 2;
+    var PAD = 16;  // breathing room so content never sits flush against the edge
+    var W = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth, 1);
+    var H = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight, 1);
+    var bodyClone = document.body.cloneNode(true);
+    _gsSubstituteCanvases(document.body, bodyClone);
+    _gsCleanup(bodyClone);
+    var wrapper = document.createElement('div');
+    wrapper.setAttribute('style',
+      'font-family:' + _gsExportFont() + ';box-sizing:border-box;width:' + W + 'px');
+    while (bodyClone.firstChild) { wrapper.appendChild(bodyClone.firstChild); }
+    var inner = new XMLSerializer().serializeToString(wrapper);
+    var styleTag = '<style>' + _gsStripDarkMedia(_gsCollectStyles()) +
+      ' svg, svg text, svg tspan { font-family:' + _gsExportFont() + '; }</style>';
+    var CW = W + PAD * 2, CH = H + PAD * 2;
+    var SW = Math.round(CW * scale), SH = Math.round(CH * scale);
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + SW +
+      '" height="' + SH + '" viewBox="0 0 ' + CW + ' ' + CH + '">' +
+      '<foreignObject x="' + PAD + '" y="' + PAD + '" width="' + W + '" height="' + H + '">' +
+      '<div xmlns="http://www.w3.org/1999/xhtml">' + styleTag + inner + '</div>' +
+      '</foreignObject></svg>';
+    var img = new Image();
+    img.onload = function() {
+      try {
+        var cv = document.createElement('canvas');
+        cv.width = SW; cv.height = SH;
+        var ctx = cv.getContext('2d');
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, SW, SH);
+        ctx.drawImage(img, 0, 0);
+        _gsPostPng(id, cv.toDataURL('image/png'), null);
+      } catch (e) { _gsPostPng(id, null, 'tainted'); }
+    };
+    img.onerror = function() { _gsPostPng(id, null, 'image_error'); };
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  } catch (e) {
+    _gsPostPng(id, null,
+      (e && e.name === 'SecurityError') ? 'tainted' : String((e && e.message) || e));
+  }
+}
+window.addEventListener('message', function(ev) {
+  var d = ev.data || {};
+  if (!d || d.type !== 'genspark_visualize_request_png') return;
+  var run = function() { _gsRasterize(d.id, d.scale); };
+  if (document.fonts && document.fonts.ready && document.fonts.ready.then) {
+    document.fonts.ready.then(function() {
+      if (window.requestAnimationFrame) window.requestAnimationFrame(run);
+      else window.setTimeout(run, 0);
+    });
+  } else if (window.requestAnimationFrame) {
+    window.requestAnimationFrame(run);
+  } else {
+    window.setTimeout(run, 0);
+  }
+});
+</script>
+</head>
+<body><div class="page">
+  <style>
+    .page{max-width:758px;color:var(--color-text-primary)}
+    .hero{position:relative;overflow:hidden;border:1px solid var(--color-border-default);border-radius:24px;padding:28px;background:
+      radial-gradient(circle at 10% 10%, color-mix(in srgb, var(--color-brand-secondary) 18%, transparent), transparent 38%),
+      radial-gradient(circle at 90% 20%, color-mix(in srgb, var(--color-brand-primary) 16%, transparent), transparent 32%),
+      linear-gradient(180deg, color-mix(in srgb, var(--color-bg-surface) 86%, var(--color-brand-primary) 14%), var(--color-bg-surface));
+      box-shadow:var(--shadow-md)}
+    .badge{display:inline-flex;gap:8px;align-items:center;padding:6px 12px;border-radius:999px;background:color-mix(in srgb, var(--color-brand-secondary) 14%, var(--color-bg-page));border:1px solid color-mix(in srgb, var(--color-brand-secondary) 35%, var(--color-border-default));font-size:var(--text-small);font-weight:700;color:var(--color-text-primary)}
+    .hero-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:18px;margin-top:16px}
+    .h1{font-size:40px;line-height:1.08;font-weight:800;letter-spacing:-0.02em;margin:10px 0 12px}
+    .lead{font-size:17px;line-height:1.65;color:var(--color-text-secondary);margin:0 0 18px}
+    .cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .btn{border:0;border-radius:14px;padding:12px 16px;font-size:15px;font-weight:800;cursor:pointer}
+    .btn.primary{background:var(--color-brand-primary);color:var(--color-text-on-brand)}
+    .btn.secondary{background:var(--color-bg-page);color:var(--color-text-primary);border:1px solid var(--color-border-default)}
+    .panel{border:1px solid var(--color-border-default);border-radius:20px;background:color-mix(in srgb, var(--color-bg-surface) 88%, var(--color-brand-secondary) 12%);padding:18px}
+    .panel h3{margin:0 0 10px;font-size:var(--text-h4)}
+    .manual{display:grid;gap:10px}
+    .manual-item{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--color-border-default);font-size:14px}
+    .manual-item:last-child{border-bottom:0}
+    .manual-item span:last-child{color:var(--color-text-secondary);text-align:right}
+    .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+    .meta .card,.section,.info-card,.faq,.object,.schedule{background:var(--color-bg-surface);border:1px solid var(--color-border-default);border-radius:20px}
+    .meta .card{padding:14px}
+    .label{font-size:12px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+    .value{font-size:18px;font-weight:800}
+    .section{padding:22px;margin-top:18px}
+    .section-title{font-size:28px;font-weight:800;margin:0 0 8px}
+    .section-sub{font-size:15px;color:var(--color-text-secondary);line-height:1.7;margin:0 0 18px}
+    .story{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .story .step,.point,.faq,.info-card,.object,.schedule{padding:16px}
+    .kicker{display:inline-block;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:700;background:color-mix(in srgb, var(--color-brand-primary) 12%, var(--color-bg-page));color:var(--color-text-primary);margin-bottom:10px}
+    .story h4,.point h4,.faq h4,.info-card h4,.object h4{margin:0 0 8px;font-size:18px}
+    .story p,.point p,.faq p,.info-card p,.object p,.schedule p{margin:0;color:var(--color-text-secondary);line-height:1.65;font-size:14px}
+    .points{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .objects{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .info-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
+    .schedule-list{display:grid;gap:10px}
+    .schedule-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--color-border-default);font-size:14px}
+    .schedule-row:last-child{border-bottom:0}
+    .schedule-row span:last-child{text-align:right;color:var(--color-text-secondary)}
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .footer-cta{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:22px;border-radius:22px;border:1px solid color-mix(in srgb, var(--color-brand-primary) 32%, var(--color-border-default));background:linear-gradient(135deg, color-mix(in srgb, var(--color-brand-primary) 10%, var(--color-bg-surface)), color-mix(in srgb, var(--color-brand-secondary) 12%, var(--color-bg-surface)))}
+    .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .pill{padding:8px 10px;border-radius:999px;border:1px solid var(--color-border-default);font-size:13px;background:var(--color-bg-page);color:var(--color-text-secondary)}
+    .small{font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+    @media (max-width: 720px){
+      .hero-grid,.info-grid,.story,.points,.objects,.faq-grid,.meta{grid-template-columns:1fr}
+      .h1{font-size:32px}
+    }
+  </style>
+
+  <section class="hero">
+    <div class="badge">과학카페 쿠아 × 몰입형 탐색 방탈출</div>
+    <div class="hero-grid">
+      <div>
+        <div class="kicker">MAGICAL SCIENCE ESCAPE</div>
+        <div class="h1">큐리오 상점<br>마법 취급합니다</div>
+        <p class="lead">평범한 인간들의 눈에는 <b>과학카페 쿠아</b>로 보이지만, 실은 마법 종족들을 위한 비밀 상점. 오늘은 정기 점검일입니다. 그런데… 몇몇 마법 아이템이 <b>과학 원리</b>로 작동하고 있습니다.</p>
+        <div class="pill-row">
+          <div class="pill">스토리 · 판타지 · 감성 · 탐색</div>
+          <div class="pill">플레이 40분</div>
+          <div class="pill">1~4인</div>
+          <div class="pill">현장 방문 등록제</div>
+        </div>
+        <div class="cta-row">
+          <button class="btn primary" onclick="sendPrompt('이 방탈출 홈페이지 시안을 바탕으로 실제 배포용으로 더 다듬어줘')">이 시안 이어서 수정</button>
+          <button class="btn secondary" onclick="sendPrompt('운영정보와 카피를 유지한 채 이 홈페이지의 섹션별 문구를 더 고급스럽게 다듬어줘')">카피 다듬기</button>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>오늘의 업무 매뉴얼</h3>
+        <div class="manual">
+          <div class="manual-item"><span>플레이어 역할</span><span>신입 아르바이트생 ‘아쿠’</span></div>
+          <div class="manual-item"><span>목표</span><span>이상해진 장난감 점검 후 진실 추적</span></div>
+          <div class="manual-item"><span>핵심 장치</span><span>토로이드 램프 · 오라리 · 마법의 책장</span></div>
+          <div class="manual-item"><span>분위기</span><span>매뉴얼 / 점검표 / 십자말풀이 감성</span></div>
+          <div class="manual-item"><span>메인 카피</span><span>이 가게, 메뉴판이 이상합니다</span></div>
+        </div>
+      </aside>
+    </div>
+    <div class="meta">
+      <div class="card"><div class="label">PRICE</div><div class="value">1인 15,000원</div></div>
+      <div class="card"><div class="label">AGE</div><div class="value">전 연령 가능</div></div>
+      <div class="card"><div class="label">RULE</div><div class="value">초등 이하 보호자 동반</div></div>
+      <div class="card"><div class="label">PLACE</div><div class="value">쿠아 카페 공간 활용</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">이야기의 시작</h2>
+    <p class="section-sub">첫 출근의 설렘도 잠시. 업무 매뉴얼을 따라 상점을 점검하던 당신은, 마법이 빠져나간 자리에 과학이 대신 작동하고 있다는 수상한 흔적을 발견합니다.</p>
+    <div class="story">
+      <div class="step info-card">
+        <div class="kicker">STEP 1</div>
+        <h4>상점에 입장</h4>
+        <p>카페 쿠아 안에 숨은 ‘큐리오 상점’의 세계관으로 진입합니다. 익숙한 카페가 전혀 다른 장소처럼 보이기 시작합니다.</p>
+      </div>
+      <div class="step info-card">
+        <div class="kicker">STEP 2</div>
+        <h4>이상 현상 점검</h4>
+        <p>여섯 개의 마법 장치를 원하는 순서로 살피며, 무엇이 어떻게 달라졌는지 탐색합니다.</p>
+      </div>
+      <div class="step info-card">
+        <div class="kicker">STEP 3</div>
+        <h4>숨겨진 진실 발견</h4>
+        <p>단서를 연결해 상점에 생긴 문제의 정체를 밝혀내고, 마법과 과학이 교차하는 비밀에 도달합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">쿠아에서만 가능한 포인트</h2>
+    <p class="section-sub">전시장 같은 카페 공간, 과학 오브제, 감성 판타지 스토리텔링이 결합된 테마형 방탈출입니다.</p>
+    <div class="points">
+      <div class="point info-card"><h4>과학 오브제 실물 체험</h4><p>토로이드 램프, 오디오 스펙트럼 조명, CMYK 전구, 태양계 오라리 등 실제 전시 요소를 스토리 안으로 끌어옵니다.</p></div>
+      <div class="point info-card"><h4>공포보다 몰입</h4><p>자극적인 공포 대신 감성적 판타지와 탐색의 재미를 중심에 둔, 가족·관광객 친화형 구성입니다.</p></div>
+      <div class="point info-card"><h4>카페형 현장 경험</h4><p>예약 압박 없이 운영시간 내 현장 등록으로 참여할 수 있어, 대전 방문 코스와 함께 즐기기 좋습니다.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">핵심 오브제 6</h2>
+    <p class="section-sub">홈페이지 비주얼과 섹션 장식 모티프로 활용하기 좋은 상징 장치들입니다.</p>
+    <div class="objects">
+      <div class="object"><h4>토로이드 램프</h4><p>비활성 기체와 빛의 흐름이 만들어내는 마법 같은 에너지.</p></div>
+      <div class="object"><h4>오디오 스펙트럼 조명</h4><p>보이지 않는 소리를 눈으로 보여주는 신호의 마법.</p></div>
+      <div class="object"><h4>CMYK 전구</h4><p>색이 섞이며 새로운 장면을 여는 조명 장치.</p></div>
+      <div class="object"><h4>태양계 오라리</h4><p>회전하는 세계의 질서를 상점 안에 축소한 기계 장난감.</p></div>
+      <div class="object"><h4>마법의 책장</h4><p>상점의 기록과 비밀이 저장된 아카이브.</p></div>
+      <div class="object"><h4>하늘연꽃</h4><p>잠들어 있다가 깨어나는 목각 연꽃 오브제.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="info-grid">
+      <div class="info-card">
+        <h2 class="section-title" style="margin-top:0">플레이 정보</h2>
+        <p class="section-sub">입문자도 이해하기 쉬운 정보 구조로 정리했습니다.</p>
+        <div class="story" style="grid-template-columns:1fr 1fr;gap:10px">
+          <div class="info-card"><h4>장르</h4><p>스토리 · 판타지 · 감성 · 탐색</p></div>
+          <div class="info-card"><h4>난이도</h4><p>중 / 전 연령 대상</p></div>
+          <div class="info-card"><h4>소요시간</h4><p>약 40분</p></div>
+          <div class="info-card"><h4>인원</h4><p>최소 1명 ~ 최대 4명</p></div>
+          <div class="info-card"><h4>참가비</h4><p>1인당 15,000원</p></div>
+          <div class="info-card"><h4>진행방식</h4><p>예약제 아님 / 현장 방문 등록제</p></div>
+        </div>
+        <div class="small" style="margin-top:12px">※ 초등 이하 어린이는 반드시 부모와 함께 진행해 주세요.</div>
+      </div>
+      <div class="schedule">
+        <h4>운영 시간</h4>
+        <div class="schedule-list">
+          <div class="schedule-row"><span>월요일</span><span>미운영</span></div>
+          <div class="schedule-row"><span>화요일 ~ 금요일</span><span>11:00 ~ 20:00<br>(12:00 ~ 13:00 미운영)</span></div>
+          <div class="schedule-row"><span>토요일</span><span>미운영</span></div>
+          <div class="schedule-row"><span>일요일</span><span>10:00 ~ 21:00</span></div>
+        </div>
+        <p style="margin-top:10px">운영시간 내 방문 후 현장에서 등록해 참여하는 방식입니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">이용 전 안내</h2>
+    <div class="faq-grid">
+      <div class="faq"><h4>도움 제공 여부</h4><p>문제 풀이 정답을 직접 제공하지 않습니다. 진행이 막힐 경우 제공되는 힌트를 활용해 주세요.</p></div>
+      <div class="faq"><h4>진행 방식</h4><p>정해진 세계관 속에서 원하는 순서로 장치를 탐색하며 단서를 수집합니다.</p></div>
+      <div class="faq"><h4>추천 방문객</h4><p>과학을 좋아하는 가족, 대전 여행객, 카페형 체험 콘텐츠를 찾는 입문자에게 추천합니다.</p></div>
+      <div class="faq"><h4>공간 특징</h4><p>쿠아 카페의 일반 고객 좌석을 제외한 공간과 전시 요소를 활용해 실제 장소성이 살아 있습니다.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="footer-cta">
+      <div>
+        <div class="kicker">ON-SITE REGISTRATION</div>
+        <h2 class="section-title" style="margin:0 0 6px">운영시간 확인 후, 쿠아에서 바로 등록하세요</h2>
+        <p class="section-sub" style="margin:0">대전 유성구 과학카페 쿠아에서 만나는 마법과 과학의 교차점. 일상적인 카페 방문이 하나의 미션이 됩니다.</p>
+      </div>
+      <div class="cta-row" style="margin-top:0">
+        <button class="btn primary" onclick="sendPrompt('이 홈페이지 시안을 바탕으로 실제 웹사이트용 문구, 메뉴 구조, 섹션별 상세 카피를 정리해줘')">실제 웹카피 정리</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    setTimeout(() => { if (typeof _reportHeight === 'function') _reportHeight(); }, 50);
+  </script>
+</div></body>
+</html>
