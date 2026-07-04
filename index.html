@@ -637,6 +637,53 @@
     text-align:center;
     padding: 20px 0;
   }
+
+  /* Location 카드 (네이버 지도 링크) */
+  .location-card{
+    display: block;
+    text-align: center;
+    padding: 30px 20px 24px;
+    border: 1px double var(--sepia-dark);
+    background: rgba(232,213,168,0.15);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+  }
+  .location-card:hover,
+  .location-card:focus-visible{
+    background: rgba(232,213,168,0.35);
+    border-color: var(--wax-red);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(60,40,20,0.25);
+    outline: none;
+  }
+  .location-card:hover .map-hint,
+  .location-card:focus-visible .map-hint{
+    color: var(--wax-red);
+    opacity: 1;
+  }
+  .map-hint{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(139,105,49,0.4);
+    width: 100%;
+    font-family: 'Cinzel', 'Nanum Myeongjo', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+    opacity: 0.75;
+    transition: color 0.2s ease, opacity 0.2s ease;
+    text-transform: uppercase;
+  }
+  .map-hint svg{
+    width: 12px; height: 12px;
+  }
   .visit-btn{
     display: inline-block;
     padding: 18px 44px;
@@ -789,7 +836,7 @@
 </svg>
 
 <div class="brand-bar">
-  QUA · SCIENCE CAFÉ <span>✦</span> PROJECT JOJUN <span>✦</span> ANNO MMXXVI
+  QUA · SCIENCE CAFÉ <span>✦</span> PROJECT CHOJUN <span>✦</span> ANNO MMXXVI
 </div>
 
 <div class="book">
@@ -867,7 +914,7 @@
       </svg>
     </div>
 
-    <div class="eyebrow">The Curio Shoppe · Est. Long Ago</div>
+    <div class="eyebrow">The QURIO Shoppe</div>
     <h1 class="title">QURIO</h1>
 
     <div class="divider-flourish">
@@ -882,14 +929,14 @@
     </div>
 
     <h2 class="subtitle-ko">큐리오 상점 — 마법 취급합니다</h2>
-    <p class="tagline">The Curio Shoppe · Where Magic is Sold</p>
+    <p class="tagline">The QURIO Shoppe · Where Magic is Sold</p>
 
-    <div class="year-stamp">— MMXXVI · CHAPTER I —</div>
+    <div class="year-stamp">— MMXXVI · DAEJEON —</div>
 
-    <!-- Warning 도장 -->
+    <!-- Info 도장 -->
     <div class="warning-stamp">
-      스토리상 필요한 경우가 아니라면<br>
-      절대 개봉하지 마시오
+      마법에 호기심 있는<br>
+      방문객만 열람 가능
     </div>
   </section>
 
@@ -918,14 +965,11 @@
       숨겨진 은밀한 장난의 진실을 파헤쳐라.”
     </p>
 
-    <div class="story-columns">
+    <div class="story-columns" style="grid-template-columns: 1fr; max-width: 720px; margin: 0 auto;">
       <div class="col">
-        <p>평범한 취업준비생이었던 <b>아쿠</b>는 어느 날 기묘한 채용 공고에 이끌려 <em>'카페 쿠아'</em>에 첫 출근을 하게 됩니다. 이곳은 평범한 인간의 눈에는 그저 한적한 카페로 보이지만, 마법적인 존재들에게는 신비로운 물건을 사고파는 <b>‘큐리오 마법 상점’</b>입니다.</p>
-        <p>출근 첫날 아쿠의 임무는 상점의 <em>마법 장난감들을 점검하는 것</em>. 장난감들을 하나씩 작동하며 점검하던 중, 아쿠는 일부 장난감들이 원래의 기능을 잃고 수상하게 작동하는 것을 발견합니다.</p>
-      </div>
-      <div class="col">
-        <p>업무 매뉴얼에 따라 이상 현상의 원인을 추적하던 아쿠는, 장난감들의 마력을 훔쳐 간 범인이 <b>요정</b>이라는 사실을 밝히는 데 성공합니다. 그러나 마력난에 처한 요정들의 절박한 사정을 알게 된 아쿠는—</p>
-        <p>‘카페 쿠아’의 신비로운 메뉴, <em>(요정마을) 마법의 별사탕</em>을 활용해 이들의 위기를 함께 해결합니다. 사건을 마무리한 아쿠는 마침내 <b>정식 지점장</b>으로 승진하며, 오늘도 큐리오 상점의 문을 엽니다.</p>
+        <p>평범한 취업준비생이었던 <b>아쿠</b>는 어느 날 기묘한 채용 공고에 이끌려 <em>‘카페 쿠아’</em>에 첫 출근을 하게 됩니다. 이곳은 평범한 인간의 눈에는 그저 한적한 카페로 보이지만, 마법적인 존재들에게는 신비로운 물건을 사고파는 <b>‘큐리오 마법 상점’</b>입니다.</p>
+        <p>출근 첫날 아쿠에게 주어진 임무는 상점의 <em>마법 장난감들을 하나씩 점검하는 것</em>. 그런데 점검을 시작한 순간부터, 장난감들이 어딘가 <b>수상하게</b> 움직입니다. 이 상점에는 무슨 일이 벌어지고 있는 걸까요.</p>
+        <p style="text-align:center; margin-top: 8px; color: var(--wax-red); font-style: italic; font-family: 'IM Fell English', serif;">— 그 다음 이야기는, 상점에서 직접 확인하시길. —</p>
       </div>
     </div>
 
@@ -944,7 +988,7 @@
           <div style="font-family: 'Nanum Myeongjo'; font-weight:800; color: var(--ink-mid); font-size: 15px;">일상이 마법이 되는 순간</div>
         </div>
         <div>
-          <div class="eyebrow" style="margin-bottom: 4px;">Setting</div>
+          <div class="eyebrow" style="margin-bottom: 4px;">Place</div>
           <div style="font-family: 'Nanum Myeongjo'; font-weight:800; color: var(--ink-mid); font-size: 15px;">과학카페 쿠아 전관</div>
         </div>
       </div>
@@ -1044,9 +1088,9 @@
             <circle cx="14" cy="20" r="0.8" fill="var(--wax-red)"/>
           </svg>
         </div>
-        <h4>The Fairies</h4>
-        <div class="name-ko">요정들</div>
-        <p>마력난에 처한 작은 이웃들. 장난감의 마력을 훔친 범인이자, 이야기의 마지막에 뜻밖의 손을 내미는 존재입니다.</p>
+        <h4>The MysTERY</h4>
+        <div class="name-ko">의문의 존재들</div>
+        <p>장난감 마력과 연관된 의문의 존재들입니다.</p>
       </div>
     </div>
 
@@ -1087,10 +1131,10 @@
     </div>
 
     <div class="manual-lines" style="margin-top: 40px;">
-      <div class="manual-row"><span class="k">난이도 · Difficulty</span><span class="dots"></span><span class="v">중 (中) · 전 연령 가능</span></div>
+      <div class="manual-row"><span class="k">난이도 · Difficulty</span><span class="dots"></span><span class="v">★★★☆☆ · 전 연령 가능</span></div>
       <div class="manual-row"><span class="k">소요시간 · Duration</span><span class="dots"></span><span class="v">약 40 분</span></div>
-      <div class="manual-row"><span class="k">문제 수 · Puzzles</span><span class="dots"></span><span class="v">7+@ 문항</span></div>
-      <div class="manual-row"><span class="k">진행 · Style</span><span class="dots"></span><span class="v">비선형 탐색 (Non-linear)</span></div>
+      <div class="manual-row"><span class="k">문제 수 · Puzzles</span><span class="dots"></span><span class="v">9+@ 문항</span></div>
+      <div class="manual-row"><span class="k">진행 · Style</span><span class="dots"></span><span class="v">순서없이 탐색 가능 (Non-linear)</span></div>
       <div class="manual-row"><span class="k">기믹 · Mechanics</span><span class="dots"></span><span class="v">실물 전시 조작 · 감각 체험 · 추리</span></div>
     </div>
 
@@ -1186,7 +1230,7 @@
           </svg>
         </div>
         <div>
-          <h4>하늘연꽃 (키네틱아트)</h4>
+          <h4>하늘연꽃 (키네틱 아트)</h4>
           <span class="en">Sky-Lotus</span>
           <p>손을 대면 잠에서 깨어나 꽃잎을 여는 목각 연꽃. 아쿠가 가장 처음 마주하는 장치.</p>
         </div>
@@ -1207,9 +1251,9 @@
           </svg>
         </div>
         <div>
-          <h4>새 시계</h4>
-          <span class="en">The Cuckoo-Herald</span>
-          <p>정각마다 시간의 흐름을 알리는 새. 아쿠가 도착한 순간, 예정에 없던 울음을 내기 시작합니다.</p>
+          <h4>벗꽃 오토마타</h4>
+          <span class="en">Blossom Automata</span>
+          <p>마법의 규칙으로 정교하게 움직이는마법의 장치입니다.</p>
         </div>
       </div>
 
@@ -1421,7 +1465,7 @@
       </div>
       <div class="faq-item">
         <p class="q">함께 온 일행이 참여하지 않아도 되나요?</p>
-        <p class="a">네, 1인 진행부터 4인 팀까지 가능합니다. 일행은 카페 좌석에서 편안히 기다리실 수 있습니다. </p>
+        <p class="a">네, 1인 진행부터 4인 팀까지 가능합니다. 일행은 카페 좌석에서 편안히 기다리실 수 있습니다. 단, 참여 시 과금됩니다.</p>
       </div>
       <div class="faq-item">
         <p class="q">별사탕은 별도 구매인가요?</p>
@@ -1471,7 +1515,9 @@
       <!-- 오른쪽: 위치 -->
       <div>
         <h3 class="chapter-ko" style="text-align:center;">Location · 위치</h3>
-        <div style="text-align:center; padding: 30px 20px; border: 1px double var(--sepia-dark); background: rgba(232,213,168,0.15);">
+        <a href="https://naver.me/xzxmQBFb" target="_blank" rel="noopener noreferrer"
+           class="location-card"
+           aria-label="과학카페 쿠아 네이버 지도에서 보기 (새 창)">
           <svg viewBox="0 0 60 60" style="width: 50px; height: 50px; color: var(--wax-red); margin-bottom: 12px;" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M30 8 Q42 8 42 22 Q42 32 30 50 Q18 32 18 22 Q18 8 30 8Z"/>
             <circle cx="30" cy="22" r="5" fill="currentColor"/>
@@ -1486,10 +1532,16 @@
             대전광역시 유성구 신성로61번안길 53<br>
             대덕연구개발특구 내 위치
           </p>
-        </div>
+          <div class="map-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7 M9 7h8v8"/>
+            </svg>
+            <span>NAVER 지도에서 보기</span>
+          </div>
+        </a>
 
         <div class="visit-block" style="margin-top: 30px;">
-          <a class="visit-btn" href="#" onclick="alert('운영시간 내 카페 쿠아에 방문해 주세요.'); return false;">
+          <a class="visit-btn" href="https://naver.me/xzxmQBFb" target="_blank" rel="noopener noreferrer">
             RING THE BELL
           </a>
           <p style="margin-top: 12px; font-size: 13px; color: var(--ink-soft); font-style: italic;">
@@ -1532,14 +1584,14 @@
   </div>
 
   <div style="letter-spacing: 0.3em;">
-    QUA · SCIENCE CAFÉ &nbsp;<span style="color: var(--wax-red-hi)">×</span>&nbsp; PROJECT JOJUN
+    QUA · SCIENCE CAFÉ &nbsp;<span style="color: var(--wax-red-hi)">×</span>&nbsp; PROJECT CHOJUN
   </div>
   <div class="location">
     과학카페 쿠아 (QUA) · 대전광역시 유성구 신성로61번안길 53<br>
     MMXXVI
   </div>
   <div style="opacity: 0.5; margin-top: 10px; font-size: 10px;">
-    © QUA × JOJUN · The Curio Shoppe · All Curiosities Reserved
+    © QUA × CHOJUN · The QURIO Shoppe · All Curiosities Reserved
   </div>
 </footer>
 

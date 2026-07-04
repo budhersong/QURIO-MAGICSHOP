@@ -637,6 +637,53 @@
     text-align:center;
     padding: 20px 0;
   }
+
+  /* Location 카드 (네이버 지도 링크) */
+  .location-card{
+    display: block;
+    text-align: center;
+    padding: 30px 20px 24px;
+    border: 1px double var(--sepia-dark);
+    background: rgba(232,213,168,0.15);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+  }
+  .location-card:hover,
+  .location-card:focus-visible{
+    background: rgba(232,213,168,0.35);
+    border-color: var(--wax-red);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(60,40,20,0.25);
+    outline: none;
+  }
+  .location-card:hover .map-hint,
+  .location-card:focus-visible .map-hint{
+    color: var(--wax-red);
+    opacity: 1;
+  }
+  .map-hint{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(139,105,49,0.4);
+    width: 100%;
+    font-family: 'Cinzel', 'Nanum Myeongjo', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+    opacity: 0.75;
+    transition: color 0.2s ease, opacity 0.2s ease;
+    text-transform: uppercase;
+  }
+  .map-hint svg{
+    width: 12px; height: 12px;
+  }
   .visit-btn{
     display: inline-block;
     padding: 18px 44px;
@@ -1471,7 +1518,9 @@
       <!-- 오른쪽: 위치 -->
       <div>
         <h3 class="chapter-ko" style="text-align:center;">Location · 위치</h3>
-        <div style="text-align:center; padding: 30px 20px; border: 1px double var(--sepia-dark); background: rgba(232,213,168,0.15);">
+        <a href="https://naver.me/xzxmQBFb" target="_blank" rel="noopener noreferrer"
+           class="location-card"
+           aria-label="과학카페 쿠아 네이버 지도에서 보기 (새 창)">
           <svg viewBox="0 0 60 60" style="width: 50px; height: 50px; color: var(--wax-red); margin-bottom: 12px;" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M30 8 Q42 8 42 22 Q42 32 30 50 Q18 32 18 22 Q18 8 30 8Z"/>
             <circle cx="30" cy="22" r="5" fill="currentColor"/>
@@ -1486,10 +1535,16 @@
             대전광역시 유성구 신성로61번안길 53<br>
             대덕연구개발특구 내 위치
           </p>
-        </div>
+          <div class="map-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7 M9 7h8v8"/>
+            </svg>
+            <span>NAVER 지도에서 보기</span>
+          </div>
+        </a>
 
         <div class="visit-block" style="margin-top: 30px;">
-          <a class="visit-btn" href="#" onclick="alert('운영시간 내 카페 쿠아에 방문해 주세요.'); return false;">
+          <a class="visit-btn" href="https://naver.me/xzxmQBFb" target="_blank" rel="noopener noreferrer">
             RING THE BELL
           </a>
           <p style="margin-top: 12px; font-size: 13px; color: var(--ink-soft); font-style: italic;">
